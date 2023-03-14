@@ -1,0 +1,25 @@
+import { z } from "zod";
+import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+
+export const predatorRouter = createTRPCRouter({
+  postMessage: publicProcedure
+    .input(
+      z.object({
+        name: z.string(),
+        message: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      try {
+        await ctx.prisma.predator.create({
+          data: {
+            name: input.name,
+            message: input.message,
+          },
+        });
+      } catch (err) {
+        console.log(err);
+        return false;
+      }
+    }),
+});
