@@ -1,5 +1,9 @@
 import { z } from "zod";
-import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "~/server/api/trpc";
 
 export const predatorRouter = createTRPCRouter({
   postMessage: protectedProcedure
@@ -22,4 +26,20 @@ export const predatorRouter = createTRPCRouter({
         return false;
       }
     }),
+  getMessages: publicProcedure.query(async ({ ctx }) => {
+    try {
+      return await ctx.prisma.predator.findMany({
+        select: {
+          name: true,
+          message: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }),
 });
