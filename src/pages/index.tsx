@@ -44,7 +44,9 @@ const AuthShowcase: React.FC = () => {
         {sessionData && (
           <div className="w-full">
             <span>Logged in as {sessionData.user?.name}</span>
-            <MessageForm />{" "}
+            <div className="mt-4">
+              <MessageForm />
+            </div>
           </div>
         )}
       </p>
