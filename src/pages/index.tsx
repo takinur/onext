@@ -2,8 +2,8 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { PredatorEntries } from "~/components/PredatorEntries";
 
-import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
   return (
@@ -49,6 +49,10 @@ const AuthShowcase: React.FC = () => {
       >
         {sessionData ? "Sign out" : "Sign in with Discord"}
       </button>
+      <div className="pt-10">
+        <PredatorEntries />
+      </div>
     </div>
   );
 };
+
