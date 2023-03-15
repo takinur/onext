@@ -1,4 +1,4 @@
-# Create T3 App
+# NextJS 13 With Discord 0Auth2 
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
